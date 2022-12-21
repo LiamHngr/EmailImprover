@@ -3,7 +3,7 @@ const https = require("https");
 const app = express();
 const bodyParser = require("body-parser")
 app.use(bodyParser.urlencoded({extended:true}))
- 
+require('dotenv').config()
 
 app.get("/",function(req,res){
    //res.sendFile("C:/Users/liamh/Documents/OpenAi/emailImprover/index.html")
@@ -12,9 +12,9 @@ app.get("/",function(req,res){
 
 async function Getai(promptStr){
     const { Configuration, OpenAIApi } = require("openai");
-
+    console.log("hellow world ")
     const configuration = new Configuration({
-        apiKey: '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',
+        apiKey: process.env.OPENAI_API_KEY,
     });
     const openai = new OpenAIApi(configuration);
     //console.log(promptStr)
@@ -46,8 +46,8 @@ app.post("/send", async function(req,res){
     res.send()  
 })
 
-
+//git update ss
 app.listen(3000, function(){
-    console.log("server is runnong on port 3000.")
+    // console.log("server is runnong on port 3000.")
 }
 )
